@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Referer check
     guard_die(isset($_SERVER['HTTP_REFERER']), 'Referer not found.');
     $referer = parse_url($_SERVER['HTTP_REFERER']);
-    guard_die($referer['host'] === 'p5.test', 'Invalid referer.');
+    guard_die($referer['host'] === getenv('HOSTNAME'), 'Invalid referer.');
 
     // Token check
     guard_die(
