@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=app
+      - HOSTNAME=localhost
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=app
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
+
+volumes:
+  db_data:
+
+networks:
+  app_network:
