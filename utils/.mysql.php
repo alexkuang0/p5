@@ -1,6 +1,11 @@
 <?php
 
-$mysqli = new mysqli('127.0.0.1', 'root', '', 'cs329e');
+$MYSQL_HOST = getenv('MYSQL_HOST') ?? '127.0.0.1';
+$MYSQL_USER = getenv('MYSQL_USER') ?? 'root';
+$MYSQL_PASSWORD = getenv('MYSQL_PASSWORD') ?? '';
+$MYSQL_DATABASE = getenv('MYSQL_DATABASE') ?? 'cs329e';
+
+$mysqli = new mysqli($MYSQL_HOST, $MYSQL_USER, $MYSQL_PASSWORD, $MYSQL_DATABASE);
 
 if ($mysqli->connect_errno) {
     die("Failed to connect to MySQL ($mysqli->connect_errno) $mysqli->connect_error");
