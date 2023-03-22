@@ -1,4 +1,6 @@
-# Web Dev - Project 5
+# Project TeamUp
+
+Class project from Su21 Web Dev.
 
 Tech stack for this project:
 
